@@ -578,44 +578,15 @@ vim.keymap.set("n", "<leader>bdt", dap_go.debug_test,
 vim.keymap.set("n", "<leader>bdl", dap_go.debug_last_test,
    { desc = "[B]reakpoint [D]ebug [L]ast test" })
 
--- tmux send function
-local function tmux_send_to_right()
- local text
- local mode = vim.fn.mode()
 
- if mode == "v" or mode == "V" or mode == "\22" then
-   -- Visual selection
-   local _, sr, sc = unpack(vim.fn.getpos("'<"))
-   local _, er, ec = unpack(vim.fn.getpos("'>"))
-   local lines = vim.api.nvim_buf_get_lines(0, sr - 1, er, false)
-   if #lines == 1 then
-     text = string.sub(lines[1], sc, ec)
-   else
-     lines[1] = string.sub(lines[1], sc)
-     lines[#lines] = string.sub(lines[#lines], 1, ec)
-     text = table.concat(lines, "\n")
-   end
-   vim.api.nvim_feedkeys(
-     vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
-     "n", false
-   )
- else
-   text = vim.api.nvim_get_current_line()
- end
+local function send_line_to_tmux()
+  local line = vim.api.nvim_get_current_line()
 
- if text:find("\n") then
-   -- Multi-line: IPython %cpaste for indentation
-   vim.fn.system("tmux load-buffer -", "%cpaste\n" .. text .. "\n--")
-   vim.fn.system("tmux paste-buffer -t right")
-   vim.fn.system("sleep 0.15")
-   vim.fn.system("tmux send-keys -t right Enter")
- else
-   vim.fn.system("tmux set-buffer --", text)
-   vim.fn.system("tmux paste-buffer -t right")
-   vim.fn.system("tmux send-keys -t right Enter")
- end
+  vim.fn.system({ "tmux", "set-buffer", line })
+  vim.fn.system({ "tmux", "paste-buffer", "-t", ":.+" })
+  vim.fn.system({ "tmux", "send-keys", "-t", ":.+", "Enter" })
 end
 
-vim.keymap.set("n", "<leader>j", tmux_send_to_right, { desc = "Send to tmux right pane" })
-vim.keymap.set("v", "<leader>j", tmux_send_to_right, { desc = "Send to tmux right pane" })
+vim.keymap.set("n", "<leader>j", send_line_to_tmux)
+
 
