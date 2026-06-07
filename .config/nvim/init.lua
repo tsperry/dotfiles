@@ -317,11 +317,26 @@ vim.pack.add({
 	"https://github.com/folke/which-key.nvim",
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/leoluz/nvim-dap-go",
+  "https://github.com/rebelot/kanagawa.nvim",
+
 })
 
 -- ============================================================================
 -- PLUGIN CONFIGS
 -- ============================================================================
+
+-- theme
+
+
+require("kanagawa").setup({
+  compile = false,
+  transparent = false,
+  theme = "wave",
+})
+
+vim.cmd.colorscheme("kanagawa-wave")
+
+
 
 -- Telescope
 local setup_telescope = function()
