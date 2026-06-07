@@ -318,7 +318,7 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/leoluz/nvim-dap-go",
   "https://github.com/rebelot/kanagawa.nvim",
-
+  "https://github.com/jpalardy/vim-slime",
 })
 
 -- ============================================================================
@@ -515,13 +515,15 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("r_language_server", {
-	cmd = { "R", "--slave", "-e", "languageserver::run()" },
-	filetypes = { "r", "rmd" },
-   root_dir = function(fname, bufnr)
-     local path = type(fname) == "string" and fname
-       or vim.api.nvim_buf_get_name(fname)
-     return vim.fs.root(path, { ".git", "DESCRIPTION" }) or vim.fs.dirname(path)
-   end,
+  cmd = { "R", "--slave", "-e", "languageserver::run()" },
+  filetypes = { "r" },
+  settings = {
+    r = {
+      lsp = {
+        diagnostics = false,
+      },
+    },
+  },
 })
 
 vim.lsp.config("gopls", {
@@ -594,14 +596,29 @@ vim.keymap.set("n", "<leader>bdl", dap_go.debug_last_test,
    { desc = "[B]reakpoint [D]ebug [L]ast test" })
 
 
-local function send_line_to_tmux()
-  local line = vim.api.nvim_get_current_line()
 
-  vim.fn.system({ "tmux", "set-buffer", line })
-  vim.fn.system({ "tmux", "paste-buffer", "-t", ":.+" })
-  vim.fn.system({ "tmux", "send-keys", "-t", ":.+", "Enter" })
-end
 
-vim.keymap.set("n", "<leader>j", send_line_to_tmux)
+
+-- ============================================================================
+-- REPL
+-- ============================================================================
+
+vim.g.slime_target = "tmux"
+vim.g.slime_no_mappings = 1
+vim.g.slime_bracketed_paste = 1
+vim.g.slime_dont_ask_default = 1
+
+
+vim.g.slime_default_config = {
+  socket_name = "default",
+  target_pane = ":.+",
+}
+
+
+vim.keymap.set("n", "<leader><CR>", "<Plug>SlimeLineSend", { desc = "Send line to REPL" })
+vim.keymap.set("x", "<leader><CR>", "<Plug>SlimeRegionSend", { desc = "Send selection to REPL" })
+vim.keymap.set("n", "<leader><leader>", "<Plug>SlimeParagraphSend", { desc = "Send paragraph to REPL" })
+
+
 
 
