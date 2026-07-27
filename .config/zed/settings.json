@@ -1,0 +1,85 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "language_models": {
+    "openai_compatible": {
+      "sam": {
+        "api_url": "http://10.0.0.204:8000/v1",
+        "available_models": [
+          {
+            "name": "Qwen3.6-27B-4bit",
+            "max_tokens": 200000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 200000,
+            "reasoning_effort": "medium",
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": false,
+              "max_tokens_parameter": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  "agent": {
+    "default_model": {
+      "provider": "sam",
+      "model": "Qwen3.6-27B-4bit",
+      "enable_thinking": true,
+      "effort": "medium"
+    },
+    "sidebar_side": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "disable_ai": false,
+  "ssh_connections": [
+    {
+      "host": "sam",
+      "username": "tom",
+      "args": [],
+      "projects": []
+    },
+    {
+      "host": "work_macbook",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/Users/tomsperry/.config/zed/settings.json"
+          ]
+        },
+        {
+          "paths": [
+            "/Users/tomsperry/Developer/gen3_etl"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "dole",
+      "args": [],
+      "projects": []
+    }
+  ],
+  "vim_mode": true,
+  "base_keymap": "Emacs",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+}

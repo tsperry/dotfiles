@@ -1,0 +1,25 @@
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space e": "workspace::Open",
+
+      "space f f": "file_finder::Toggle",
+      "space f g": "workspace::NewSearch",
+      "space f a": "workspace::AddFolderToProject",
+      "space /": "text_finder::Toggle",
+
+      "space r n": "editor::Rename",
+
+      "space c a": "editor::ToggleCodeActions",
+      "space c d": "diagnostics::DeployCurrentFile",
+
+      "shift-k": "editor::Hover",
+
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  }
+]
