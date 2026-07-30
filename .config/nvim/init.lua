@@ -118,6 +118,53 @@ vim.api.nvim_create_autocmd("FileType", {
 if vim.g.vscode then
 	local vscode = require("vscode")
 
+	-- Finder / search (VS Code / Positron)
+	vim.keymap.set("n", "<leader>ff", function()
+		vscode.action("workbench.action.quickOpen")
+	end, { desc = "[F]ind [F]iles" })
+
+	vim.keymap.set("n", "<leader>fg", function()
+		vscode.action("workbench.action.findInFiles")
+	end, { desc = "[F]ind by [G]rep" })
+
+	vim.keymap.set("n", "<leader>fa", function()
+		vscode.action("workbench.action.addRootFolder")
+	end, { desc = "[F]ind [A]dd folder to workspace" })
+
+	vim.keymap.set("n", "<leader>/", function()
+		vscode.action("actions.find")
+	end, { desc = "Search current file" })
+
+	-- LSP-ish actions (VS Code / Positron)
+	vim.keymap.set("n", "<leader>rn", function()
+		vscode.action("editor.action.rename")
+	end, { desc = "Rename symbol" })
+
+	vim.keymap.set("n", "<leader>ca", function()
+		vscode.action("editor.action.quickFix")
+	end, { desc = "Code action" })
+
+	vim.keymap.set("n", "K", function()
+		vscode.action("editor.action.showHover")
+	end, { desc = "Hover" })
+
+	-- Pane movement (VS Code / Positron)
+	vim.keymap.set("n", "<C-h>", function()
+		vscode.action("workbench.action.navigateLeft")
+	end, { desc = "Move to left pane" })
+
+	vim.keymap.set("n", "<C-j>", function()
+		vscode.action("workbench.action.navigateDown")
+	end, { desc = "Move to lower pane" })
+
+	vim.keymap.set("n", "<C-k>", function()
+		vscode.action("workbench.action.navigateUp")
+	end, { desc = "Move to upper pane" })
+
+	vim.keymap.set("n", "<C-l>", function()
+		vscode.action("workbench.action.navigateRight")
+	end, { desc = "Move to right pane" })
+
 	-- Send to Python terminal (works for line or selection)
 	vim.keymap.set("n", "<leader><CR>", function()
 		vscode.action("python.execSelectionInTerminal")

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "renv.lock": "json"
+    },
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/tom/.config/nvim/init.lua"
+}

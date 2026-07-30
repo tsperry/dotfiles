@@ -1,5 +1,11 @@
 [
   {
+    "context": "Editor",
+    "bindings": {
+      "cmd-enter": ["workspace::SendKeystrokes", "cmd-c ctrl-` cmd-v enter ctrl-`"]
+    }
+  },
+  {
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "space e": "workspace::Open",
