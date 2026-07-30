@@ -71,6 +71,70 @@
       "host": "dole",
       "args": [],
       "projects": []
+    },
+    {
+      "host": "nantucket",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/proj/nhalzs/nhalz00/CODE/./"
+          ]
+        },
+        {
+          "paths": [
+            "/proj/nhalzs/nhalz0a/data"
+          ]
+        },
+        {
+          "paths": [
+            "/udd/nhtom/work/dx_pull/dxfu25"
+          ]
+        },
+        {
+          "paths": [
+            "/udd/nhtom/work/gen3/data_load/nhs-etl/./"
+          ]
+        },
+        {
+          "paths": [
+            "/udd/nhtom/work/googlesheets/download_googlesheets.R"
+          ]
+        },
+        {
+          "paths": [
+            "/udd/nhtom/work/redcap/./"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "nantucket",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/proj/nhdats/nhdat.qqf/ROUGH/nhs21.dd"
+          ]
+        },
+        {
+          "paths": [
+            "/udd/nhtom/work/gen3/data_load"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "vineyard.bwh.harvard.edu",
+      "username": "nhtom",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/udd/nhtom/work/gen3/R4gen3"
+          ]
+        }
+      ]
     }
   ],
   "vim_mode": true,
